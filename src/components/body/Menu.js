@@ -10,7 +10,7 @@ class Menu extends Component {
   render() {
    const menu = this.state.dishes.map((item)=>{
         return (
-           <MenuItem dish={item} />
+           <MenuItem dish={item} key={item.id} />
         );
     })
     return (
