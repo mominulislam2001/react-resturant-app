@@ -1,28 +1,52 @@
-import React, { Component } from 'react'
-import DISHES from '../../data/dishes.js'
+import React from 'react';
+import DISHES from '../../data/dishes.js';
 import MenuItem from './MenuItem.js';
-class Menu extends Component {
-    state ={
+import DishDetail from './DishDetail'
+import { useState } from 'react';
 
-        dishes : DISHES 
+
+const Menu = () =>  {
+
+  const [dishes,setDishes] = useState(DISHES);
+  const [selectedDish,setSelectedDish] = useState(null);
     
-    }
-  render() {
-   const menu = this.state.dishes.map((item)=>{
+
+
+
+  function onDishSelect (dish) {
+      
+    setSelectedDish( dish );
+    console.log(dish);
+  
+  }
+
+
+
+
+   //maping the dishes into MenuItem 
+   const menu = dishes.map(item=>{
         return (
-           <MenuItem dish={item} key={item.id} />
+           <MenuItem 
+           dish={item} 
+           key={item.id} 
+           DishSelect={()=>onDishSelect(item)}
+           />
         );
     })
+  
     return (
       <div className='container'>
         <div className='row'>
             <div className='col-6'>
               {menu}
             </div>
+            <div className='col-6'>
+               { selectedDish != null ? <DishDetail dish={selectedDish}/> : null }
+            </div>
         </div>
 
       </div>
-    )
-  }
+    );
+  
 }
 export default Menu;

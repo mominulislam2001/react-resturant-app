@@ -1,4 +1,4 @@
- const DISHES =
+const DISHES =
     [
         {
         id: 0,
